@@ -7,7 +7,7 @@ public class SpaceUtil {
 	private SpaceUtil(){};
 	
 	/**
-	 * ¿½±´Ò»¸öspace
+	 * æ‹·è´ä¸€ä¸ªspace
 	 * @param space
 	 * @return
 	 */

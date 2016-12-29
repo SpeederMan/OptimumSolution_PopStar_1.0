@@ -1,6 +1,6 @@
 package com.df.popstar.model;
 /**
- * Î»ÖÃĞÅÏ¢
+ * ä½ç½®ä¿¡æ¯
  */
 public class Position {
 	

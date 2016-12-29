@@ -7,56 +7,56 @@ import com.df.popstar.context.PopStarContext;
 import com.df.popstar.util.ScoreUtil;
 
 /**
- * ÓÎÏ·¿Õ¼äÉ¨Ãè½á¹û
+ * æ¸¸æˆç©ºé—´æ‰«æç»“æœ
  */
 public class ScanResult {
 	/**
-	 * ºìÉ«¸öÊı
+	 * çº¢è‰²ä¸ªæ•°
 	 */
 	private int redSize;
 	/**
-	 * »ÆÉ«¸öÊı
+	 * é»„è‰²ä¸ªæ•°
 	 */
 	private int yellowSize;
 	/**
-	 * ÂÌÉ«¸öÊı
+	 * ç»¿è‰²ä¸ªæ•°
 	 */
 	private int greenSize;
 	/**
-	 * À¶É«¸öÊı
+	 * è“è‰²ä¸ªæ•°
 	 */
 	private int buleSize;
 	/**
-	 * ·ÛÉ«¸öÊı
+	 * ç²‰è‰²ä¸ªæ•°
 	 */
 	private int pinkSize;
 	/**
-	 * ¿Õ¼äÖĞ¿ÉÒÔÏû³ıµÄËùÓĞÎ»ÖÃ
+	 * ç©ºé—´ä¸­å¯ä»¥æ¶ˆé™¤çš„æ‰€æœ‰ä½ç½®
 	 */
 	private List<PopStarContext> popStarContexts = new ArrayList<PopStarContext>();
 	/**
-	 * ¿Õ¼äÖĞËùÓĞµÄĞÇĞÇ¸öÊı
+	 * ç©ºé—´ä¸­æ‰€æœ‰çš„æ˜Ÿæ˜Ÿä¸ªæ•°
 	 * @return
 	 */
 	public int getTotalStarCount() {
 		return redSize + yellowSize + greenSize + buleSize + pinkSize;
 	}
 	/**
-	 * ËùÓĞ¿ÉÏû³ıµÄÎ»ÖÃ
+	 * æ‰€æœ‰å¯æ¶ˆé™¤çš„ä½ç½®
 	 * @return
 	 */
 	public List<PopStarContext> getPopStarContext() {
 		return popStarContexts;
 	}
 	/**
-	 * ÊÇ·ñÓĞ¿ÉÒÔÏû³ıµÄĞÇĞÇ
+	 * æ˜¯å¦æœ‰å¯ä»¥æ¶ˆé™¤çš„æ˜Ÿæ˜Ÿ
 	 * @return
 	 */
 	public boolean isEmpty() {
 		return popStarContexts.isEmpty();
 	}
 	/**
-	 * ¼ÇÂ¼µ½¿ÉÏû³ıµÄĞÇĞÇÖĞ
+	 * è®°å½•åˆ°å¯æ¶ˆé™¤çš„æ˜Ÿæ˜Ÿä¸­
 	 * @param context
 	 */
 	public void addPopStarContext(PopStarContext context) {
@@ -82,9 +82,9 @@ public class ScanResult {
 		}
 	}
 	/**
-	 * ×îÀÖ¹Û¹À¼Æµ±Ç°¿Õ¼äÄÜ»ñµÃµÄ×î¸ß·ÖÊı
+	 * æœ€ä¹è§‚ä¼°è®¡å½“å‰ç©ºé—´èƒ½è·å¾—çš„æœ€é«˜åˆ†æ•°
 	 * 
-	 * ÈÏÎªËùÓĞÍ¬É«ĞÇĞÇ¶¼ÄÜÏû³ı
+	 * è®¤ä¸ºæ‰€æœ‰åŒè‰²æ˜Ÿæ˜Ÿéƒ½èƒ½æ¶ˆé™¤
 	 * 
 	 * @return
 	 */
@@ -96,30 +96,30 @@ public class ScanResult {
 		
 		if(yellowSize > 1) {
 			scores += ScoreUtil.getScoreByStarCount(yellowSize);
-		} else if(yellowSize == 1) {//Ê£ÓàÒ»¸ö²»ÄÜÏû³ı
+		} else if(yellowSize == 1) {//å‰©ä½™ä¸€ä¸ªä¸èƒ½æ¶ˆé™¤
 			remainSize++;
 		}
 		if(buleSize > 1) {
 			scores += ScoreUtil.getScoreByStarCount(buleSize);
-		} else if(buleSize == 1) {//Ê£ÓàÒ»¸ö²»ÄÜÏû³ı
+		} else if(buleSize == 1) {//å‰©ä½™ä¸€ä¸ªä¸èƒ½æ¶ˆé™¤
 			remainSize++;
 		}
 		if(pinkSize > 1) {
 			scores += ScoreUtil.getScoreByStarCount(pinkSize);
-		} else if(pinkSize == 1) {//Ê£ÓàÒ»¸ö²»ÄÜÏû³ı
+		} else if(pinkSize == 1) {//å‰©ä½™ä¸€ä¸ªä¸èƒ½æ¶ˆé™¤
 			remainSize++;
 		}
 		if(greenSize > 1) {
 			scores += ScoreUtil.getScoreByStarCount(greenSize);
-		} else if(greenSize == 1) {//Ê£ÓàÒ»¸ö²»ÄÜÏû³ı
+		} else if(greenSize == 1) {//å‰©ä½™ä¸€ä¸ªä¸èƒ½æ¶ˆé™¤
 			remainSize++;
 		}
 		if(redSize > 1) {
 			scores += ScoreUtil.getScoreByStarCount(redSize);
-		} else if(redSize == 1) {//Ê£ÓàÒ»¸ö²»ÄÜÏû³ı
+		} else if(redSize == 1) {//å‰©ä½™ä¸€ä¸ªä¸èƒ½æ¶ˆé™¤
 			remainSize++;
 		}
-		//Ïû³ıµÃ·Ö+½±Àø·Ö
+		//æ¶ˆé™¤å¾—åˆ†+å¥–åŠ±åˆ†
 		return scores + ScoreUtil.getRewardScore(remainSize);
 	}
 }

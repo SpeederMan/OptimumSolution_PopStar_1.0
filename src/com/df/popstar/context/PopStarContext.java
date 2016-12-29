@@ -8,15 +8,15 @@ import com.df.popstar.model.StarModel;
 import com.df.popstar.util.ScoreUtil;
 
 /**
- * Ïû³ı²Ù×÷µÄÉÏÏÂÎÄ»·¾³
+ * æ¶ˆé™¤æ“ä½œçš„ä¸Šä¸‹æ–‡ç¯å¢ƒ
  */
 public class PopStarContext {
 	/**
-	 * ÒªÏû³ıµÄÄ¿±êstar
+	 * è¦æ¶ˆé™¤çš„ç›®æ ‡star
 	 */
 	private StarModel popStar;
 	/**
-	 * ÓëÄ¿±êstarÍ¬É«ÏàÁÚµÄËùÓĞ´ıÏû³ıĞÇĞÇµÄÎ»ÖÃ£¨°üÀ¨Ä¿±êStar£©
+	 * ä¸ç›®æ ‡staråŒè‰²ç›¸é‚»çš„æ‰€æœ‰å¾…æ¶ˆé™¤æ˜Ÿæ˜Ÿçš„ä½ç½®ï¼ˆåŒ…æ‹¬ç›®æ ‡Starï¼‰
 	 */
 	private Set<Position> popPositions = new HashSet<Position>();
 	
@@ -26,7 +26,7 @@ public class PopStarContext {
 	}
 	
 	/**
-	 * »ùÓÚÆğÊ¼Î»ÖÃpopStar£¬¹¹½¨Ïû³ıÉÏÏÂÎÄ
+	 * åŸºäºèµ·å§‹ä½ç½®popStarï¼Œæ„å»ºæ¶ˆé™¤ä¸Šä¸‹æ–‡
 	 * @param popStar
 	 * @return
 	 */
@@ -45,14 +45,14 @@ public class PopStarContext {
 		return popStar;
 	}
 	/**
-	 * »ñÈ¡´Ë´ÎÏû³ıµÄĞÇĞÇ×ÜÊı
+	 * è·å–æ­¤æ¬¡æ¶ˆé™¤çš„æ˜Ÿæ˜Ÿæ€»æ•°
 	 * @return
 	 */
 	public int getPopSize() {
 		return popPositions.size();
 	}
 	/**
-	 * ´Ë´ÎÏû³ıµÄµÃ·Ö
+	 *æ­¤æ¬¡æ¶ˆé™¤çš„å¾—åˆ†
 	 * @return
 	 */
 	public int getPopScore() {

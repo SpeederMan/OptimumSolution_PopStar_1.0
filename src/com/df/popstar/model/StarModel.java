@@ -2,7 +2,7 @@ package com.df.popstar.model;
 
 import com.df.popstar.context.GameSpaceContext;
 /**
- * StarµÄ¿Õ¼äÎ»ÖÃ»·¾³
+ * Starçš„ç©ºé—´ä½ç½®ç¯å¢ƒ
  */
 public class StarModel {
 	
@@ -13,9 +13,9 @@ public class StarModel {
 	public static int LEFT  = 3;
 	
 	public static int RIGHT = 4;
-	//Ëù´¦µÄÎ»ÖÃ
+	//æ‰€å¤„çš„ä½ç½®
 	private Position position;
-	//Ëù´¦µÄ¿Õ¼ä»·¾³
+	//æ‰€å¤„çš„ç©ºé—´ç¯å¢ƒ
 	private GameSpaceContext gameSpaceContext;
 	
 	private StarModel(GameSpaceContext gameSpaceContext, Position position) {
@@ -23,9 +23,9 @@ public class StarModel {
 		this.position = position;
 	}
 	/**
-	 * Ö¸¶¨¿Õ¼äÎ»ÖÃ½¨Ä£
+	 * æŒ‡å®šç©ºé—´ä½ç½®å»ºæ¨¡
 	 * 
-	 * Èç¹ûËùÖ¸¶¨Î»ÖÃÃ»ÓĞÔªËØÔò·µ»Ønull
+	 * å¦‚æœæ‰€æŒ‡å®šä½ç½®æ²¡æœ‰å…ƒç´ åˆ™è¿”å›null
 	 * @param space
 	 * @param x
 	 * @param y
@@ -38,21 +38,21 @@ public class StarModel {
 		return null;
 	}
 	/**
-	 * »ñÈ¡Î»ÖÃ
+	 * è·å–ä½ç½®
 	 * @return
 	 */
 	public Position getPosition() {
 		return this.position;
 	}
 	/**
-	 * »ñÈ¡ÑÕÉ«
+	 * è·å–é¢œè‰²
 	 * @return
 	 */
 	public Color getColor() {
 		return gameSpaceContext.getColor(position);
 	}
 	/**
-	 * »ñÈ¡ÓÎÏ·space
+	 * è·å–æ¸¸æˆspace
 	 * @return
 	 */
 	public GameSpaceContext getSpace() {
@@ -60,9 +60,9 @@ public class StarModel {
 	}
 	
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ±»Ïû³ı
+	 * æ˜¯å¦å¯ä»¥è¢«æ¶ˆé™¤
 	 * 
-	 * Èç¹ûµ±Ç°starµÄÉÏÏÂ×óÓÒÎ»ÖÃÃ»ÓĞÍ¬É«star£¬Ôò²»ÄÜ±»Ïû³ı
+	 * å¦‚æœå½“å‰starçš„ä¸Šä¸‹å·¦å³ä½ç½®æ²¡æœ‰åŒè‰²starï¼Œåˆ™ä¸èƒ½è¢«æ¶ˆé™¤
 	 * @return
 	 */
 	public boolean isCanDelete() {
@@ -98,9 +98,9 @@ public class StarModel {
 	}
 	
 	/**
-	 * »ñÈ¡ÏàÁÚÎ»ÖÃµÄ  Î»ÖÃ½¨Ä£
+	 * è·å–ç›¸é‚»ä½ç½®çš„  ä½ç½®å»ºæ¨¡
 	 * 
-	 * Èç¹ûÏàÁÚÎ»ÖÃ³¬³ö¿Õ¼ä±ß½ç»òÎ´³¬³ö±ß½çµ«¸ÃÎ»ÖÃÃ»ÓĞÔªËØ£¬Ôò·µ»Ønull
+	 * å¦‚æœç›¸é‚»ä½ç½®è¶…å‡ºç©ºé—´è¾¹ç•Œæˆ–æœªè¶…å‡ºè¾¹ç•Œä½†è¯¥ä½ç½®æ²¡æœ‰å…ƒç´ ï¼Œåˆ™è¿”å›null
 	 * @param direction
 	 * @return
 	 */

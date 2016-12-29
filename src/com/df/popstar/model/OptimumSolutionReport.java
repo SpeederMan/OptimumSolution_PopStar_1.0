@@ -5,23 +5,23 @@ import java.util.List;
 
 import com.df.popstar.context.PopStarContext;
 /**
- * ×îÓÅ½â±¨¸æ
+ * æœ€ä¼˜è§£æŠ¥å‘Š
  */
 public class OptimumSolutionReport {
 	/**
-	 * ×ÜµÃ·Ö
+	 * æ€»å¾—åˆ†
 	 */
 	private int score;
 	/**
-	 * Ê£ÓàĞÇĞÇÊı
+	 * å‰©ä½™æ˜Ÿæ˜Ÿæ•°
 	 */
 	private int remainStar;
 	/**
-	 * Ïû³ıµÄ²½Öè
+	 *æ¶ˆé™¤çš„æ­¥éª¤
 	 */
 	private List<PopStarContext> steps = new ArrayList<PopStarContext>();
 	/**
-	 * ·ÖÎö×ÜºÄÊ±
+	 * åˆ†ææ€»è€—æ—¶
 	 */
 	private long totalTime;
 	
@@ -61,7 +61,7 @@ public class OptimumSolutionReport {
 		return h + " Hour " + mm + " Min " + s + " Second " + ms + " ms";
 	}
 	/**
-	 * ´òÓ¡±¨¸æ
+	 * æ‰“å°æŠ¥å‘Š
 	 * @param report
 	 */
 	public void printReport() {

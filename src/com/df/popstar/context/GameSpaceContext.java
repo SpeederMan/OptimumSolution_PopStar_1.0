@@ -15,7 +15,7 @@ import com.df.popstar.model.StarModel;
 import com.df.popstar.util.ScoreUtil;
 import com.df.popstar.util.SpaceUtil;
 /**
- * ÓÎÏ·¿Õ¼äÉÏÏÂÎÄ»·¾³    ×ø±êÈçÏÂ
+ *æ¸¸æˆç©ºé—´ä¸Šä¸‹æ–‡ç¯å¢ƒ    åæ ‡å¦‚ä¸‹
  * 
  *  Y ^
  *    |
@@ -60,7 +60,7 @@ public class GameSpaceContext implements Cloneable {
 		return builder.build();
 	}
 	/**
-	 * Ïû³ıÄ¿±êĞÇĞÇ
+	 * æ¶ˆé™¤ç›®æ ‡æ˜Ÿæ˜Ÿ
 	 * @param star
 	 */
 	public void popStar(PopStarContext star) {
@@ -73,7 +73,7 @@ public class GameSpaceContext implements Cloneable {
 	}
 	
 	/**
-	 * ¿Õ¼äÖØÅÅ
+	 * ç©ºé—´é‡æ’
 	 * @param space
 	 */
 	private void resetSpace() {
@@ -100,7 +100,7 @@ public class GameSpaceContext implements Cloneable {
 		}
 	}
 	/**
-	 * »ñÈ¡¿½±´Î»ÖÃ
+	 * è·å–æ‹·è´ä½ç½®
 	 * @param space
 	 * @param beginX
 	 * @param beginY
@@ -136,12 +136,12 @@ public class GameSpaceContext implements Cloneable {
 	}
 	
 	/**
-	 * É¨ÃèËùÓĞ¿ÉÒÔÏû³ıµÄ·½Ê½
+	 * æ‰«ææ‰€æœ‰å¯ä»¥æ¶ˆé™¤çš„æ–¹å¼
 	 * @return
 	 */
 	public ScanResult scanSpace() {
 		ScanResult result = new ScanResult();
-		if(space[0][0] == null) {//È«²¿Ïû³ı
+		if(space[0][0] == null) {//å…¨éƒ¨æ¶ˆé™¤
 			return result;
 		}
 		
@@ -154,11 +154,11 @@ public class GameSpaceContext implements Cloneable {
 			if(tempX[0] == null) {
 				break;
 			}
-			for(int y=0; y<tempX.length; y++) {//µ±Ç°Î»ÖÃÒÑÃ»ÓĞÔªËØ
+			for(int y=0; y<tempX.length; y++) {//å½“å‰ä½ç½®å·²æ²¡æœ‰å…ƒç´ 
 				if(tempX[y] == null) {
 					break;
 				}
-				if(haveScanPositions.contains(new Position(x, y))) {//µ±Ç°Î»ÖÃÔªËØÒÑ¾­±»É¨Ãè¹ıµÄ
+				if(haveScanPositions.contains(new Position(x, y))) {//å½“å‰ä½ç½®å…ƒç´ å·²ç»è¢«æ‰«æè¿‡çš„
 					continue;
 				}
 				PopStarContext scanResult = PopStarContext.buildPopStarContext(StarModel.buildStarContext(this, x, y));
@@ -174,7 +174,7 @@ public class GameSpaceContext implements Cloneable {
 	}
 	
 	/**
-	 * ¿ªÊ¼·ÖÎö
+	 * å¼€å§‹åˆ†æ
 	 * @param starSpace
 	 */
 	public OptimumSolutionReport startAnalyse() {
@@ -188,31 +188,31 @@ public class GameSpaceContext implements Cloneable {
 		return report;
 	}
 	/**
-	 * Ô¤²â½á¹û±ÈÒÑÖª×îÓÅ½â²î
+	 * é¢„æµ‹ç»“æœæ¯”å·²çŸ¥æœ€ä¼˜è§£å·®
 	 * @param report
 	 * @param highLevelContext
 	 * @return
 	 */
 	private boolean isBadThanOptimumSolution(OptimumSolutionReport report, TempHighLevelContext highLevelContext, ScanResult scanResult) {
-		//ÉÏ²ã»·¾³¼ÈµÃµÃ·Ö
+		//ä¸Šå±‚ç¯å¢ƒæ—¢å¾—å¾—åˆ†
 		int currentScores = highLevelContext.getScore();
-		//Ô¤²âÄÜµÃµ½µÄ×î¸ß·Ö
+		//é¢„æµ‹èƒ½å¾—åˆ°çš„æœ€é«˜åˆ†
 		int maxScore = currentScores + scanResult.getMaxScores();
-		//±ÈÒÑÖª×îÓÅ½âÖĞµÄµÃ·ÖµÍ  ²»ÔÚºóĞø¼ÆËã
+		//æ¯”å·²çŸ¥æœ€ä¼˜è§£ä¸­çš„å¾—åˆ†ä½  ä¸åœ¨åç»­è®¡ç®—
 		return report.getScore() >= maxScore;
 	}
 	/**
-	 * Ò»ÂÖÍêÕûµÄÏû³ı½áÊø£¬Èç¹ûÓÅÓÚÒÑÖª×îÓÅ½â£¬Ôò¸üĞÂ×îÓÅ±¨¸æ
+	 * ä¸€è½®å®Œæ•´çš„æ¶ˆé™¤ç»“æŸï¼Œå¦‚æœä¼˜äºå·²çŸ¥æœ€ä¼˜è§£ï¼Œåˆ™æ›´æ–°æœ€ä¼˜æŠ¥å‘Š
 	 * @param report
 	 * @param highLevelContext
 	 * @param scanResult
 	 */
 	private void updateOptimumSolutionReportIfNecessary(OptimumSolutionReport report, TempHighLevelContext highLevelContext, ScanResult scanResult) {
-		//¼ÆËã½±Àø·Ö
+		//è®¡ç®—å¥–åŠ±åˆ†
 		int rewardScore = ScoreUtil.getRewardScore(scanResult.getTotalStarCount());
-		//´ËÂ·¾¶µÄ×îÖÕµÃ·Ö
+		//æ­¤è·¯å¾„çš„æœ€ç»ˆå¾—åˆ†
 		int scores = highLevelContext.getScore() + rewardScore;
-		if(scores > report.getScore()) {//±ÈÒÑÖª¼ÇÂ¼µÄµÃ·Ö¸ß£¬¸üĞÂ×î¸ß¼ÇÂ¼
+		if(scores > report.getScore()) {//æ¯”å·²çŸ¥è®°å½•çš„å¾—åˆ†é«˜ï¼Œæ›´æ–°æœ€é«˜è®°å½•
 			report.setScore(scores);
 			report.setRemainStars(scanResult.getTotalStarCount());
 			report.setSteps(highLevelContext.getSteps());
@@ -220,23 +220,23 @@ public class GameSpaceContext implements Cloneable {
 	}
 	
 	/**
-	 * µİ¹é·ÖÎö
-	 * @param space µ±Ç°¿Õ¼ä
-	 * @param report ·ÖÎö±¨¸æ
-	 * @param highLevelContext ÉÏ²ãÔËĞĞ»·¾³
+	 * é€’å½’åˆ†æ
+	 * @param space å½“å‰ç©ºé—´
+	 * @param report åˆ†ææŠ¥å‘Š
+	 * @param highLevelContext ä¸Šå±‚è¿è¡Œç¯å¢ƒ
 	 * @return
 	 */
 	private void analyse(OptimumSolutionReport report, TempHighLevelContext highLevelContext) {
 		
-		//¿Õ¼äÉ¨Ãè½á¹û
+		//ç©ºé—´æ‰«æç»“æœ
 		ScanResult scanResult = scanSpace();
 		
-		//µ±Ç°¿Õ¼äÒÑÃ»ÓĞ¿ÉÒÔÏû³ıµÄĞÇĞÇ
+		//å½“å‰ç©ºé—´å·²æ²¡æœ‰å¯ä»¥æ¶ˆé™¤çš„æ˜Ÿæ˜Ÿ
 		if(scanResult.isEmpty()) {
 			updateOptimumSolutionReportIfNecessary(report, highLevelContext, scanResult);
 			return;
 		}
-		//Ô¤²â×îÓÅÏû³ıµÃ·ÖµÍÓÚÒÑÖª×îÓÅ½âÔò²»ÔÚºóĞøÏû³ı
+		//é¢„æµ‹æœ€ä¼˜æ¶ˆé™¤å¾—åˆ†ä½äºå·²çŸ¥æœ€ä¼˜è§£åˆ™ä¸åœ¨åç»­æ¶ˆé™¤
 		if(isBadThanOptimumSolution(report, highLevelContext, scanResult)) {
 			return;
 		}
@@ -278,27 +278,27 @@ public class GameSpaceContext implements Cloneable {
 		return result.toString();
 	}
 	/**
-	 * ´òÓ¡ÓÎÏ·¿Õ¼ä
+	 * æ‰“å°æ¸¸æˆç©ºé—´
 	 * @param gameSpace
 	 */
 	public void printGameSpace() {
 		System.out.println(this);
 	}
 	/**
-	 *  ¼ÇÂ¼ÉÏÒ»²ãÖĞ¼ä½á¹û
+	 * è®°å½•ä¸Šä¸€å±‚ä¸­é—´ç»“æœ
 	 *
 	 */
 	class TempHighLevelContext {
 		/**
-		 * °´ÕÕÂ·¾¶stepÏû³ıËùµÃ·Ö
+		 * æŒ‰ç…§è·¯å¾„stepæ¶ˆé™¤æ‰€å¾—åˆ†
 		 */
 		private int score;
 		/**
-		 * Ê£ÓàĞÇĞÇÊı
+		 * å‰©ä½™æ˜Ÿæ˜Ÿæ•°
 		 */
 		private int remainStar;
 		/**
-		 * Ïû³ıÂ·¾¶
+		 * æ¶ˆé™¤è·¯å¾„
 		 */
 		private List<PopStarContext> steps = new ArrayList<PopStarContext>();
 		

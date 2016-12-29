@@ -22,13 +22,13 @@ import com.df.popstar.model.OptimumSolutionReport;
 public class Client {
 	
 	public static void main(String[] args) {
-		//随机生成游戏空间
+		//闅忔満鐢熸垚娓告垙绌洪棿
 		GameSpaceContext gameSpace = GameSpaceContext.build();
-		//打印空间
+		//鎵撳嵃绌洪棿
 		gameSpace.printGameSpace();;
-		//分析最优解
+		//鍒嗘瀽鏈�浼樿В
 		OptimumSolutionReport report = gameSpace.startAnalyse();
-		//打印分析报告
+		//鎵撳嵃鍒嗘瀽鎶ュ憡
 		report.printReport();
 	}
 }

@@ -15,7 +15,7 @@ public class RandomGameSpaceBuilder implements AbstractGameSpaceBuilder {
 	}
 	
 	/**
-	 * Ëæ»ú¹¹½¨Ò»¸ö¿íÎªx(0<x<10),¸ßÎªy(0<y<10)µÄÓÎÏ·¿Õ¼ä
+	 * éšæœºæ„å»ºä¸€ä¸ªå®½ä¸ºx(0<x<10),é«˜ä¸ºy(0<y<10)çš„æ¸¸æˆç©ºé—´
 	 * @param x
 	 * @param y
 	 * @return
@@ -27,7 +27,7 @@ public class RandomGameSpaceBuilder implements AbstractGameSpaceBuilder {
 		}
 		Color[][] space = new Color[10][10];
 		
-		//¶şÎ¬Êı×éÖĞÃ¿Ò»ÁĞÖĞÃ¿Ò»¸öÔªËØ³õÊ¼»¯
+														//äºŒç»´æ•°ç»„ä¸­æ¯ä¸€åˆ—ä¸­æ¯ä¸€ä¸ªå…ƒç´ åˆå§‹åŒ–
 		IntFunction<Color> initializationColor = indexY -> {
 															if(indexY >= y) {
 																return null;
@@ -36,7 +36,7 @@ public class RandomGameSpaceBuilder implements AbstractGameSpaceBuilder {
 														};
 				
 				
-		//¶şÎ¬Êı×éÖĞÃ¿Ò»ĞĞÑÕÉ«³õÊ¼»¯
+														//äºŒç»´æ•°ç»„ä¸­æ¯ä¸€è¡Œé¢œè‰²åˆå§‹åŒ–
 		IntFunction<Color[]> initializationColorArray = indexX -> {
 															if(indexX >= x) {
 																return space[indexX];
@@ -45,13 +45,13 @@ public class RandomGameSpaceBuilder implements AbstractGameSpaceBuilder {
 															return space[indexX];
 														};
 				
-		//²¢·¢³õÊ¼»¯¶şÎ¬Êı×é
+		//å¹¶å‘åˆå§‹åŒ–äºŒç»´æ•°ç»„
 		Arrays.parallelSetAll(space, initializationColorArray);
 		
 		return new GameSpaceContext(space);
 	}
 	/**
-	 * Ëæ»ú»ñµÃÒ»¸öÑÕÉ«
+	 * éšæœºè·å¾—ä¸€ä¸ªé¢œè‰²
 	 * @return
 	 */
 	private Color getRandomColor() {

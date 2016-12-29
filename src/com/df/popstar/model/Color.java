@@ -1,7 +1,7 @@
 package com.df.popstar.model;
 
 /**
- * ÑÕÉ«Ä£ÐÍ
+ *é¢œè‰²æ¨¡åž‹
  */
 public enum Color {
 	

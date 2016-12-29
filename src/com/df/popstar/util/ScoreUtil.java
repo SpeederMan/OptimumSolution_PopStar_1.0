@@ -1,10 +1,10 @@
 package com.df.popstar.util;
 /**
- * ¼Æ·Ö¹¤¾ßÀà
+ * è®¡åˆ†å·¥å…·ç±»
  */
 public class ScoreUtil {
 	/**
-	 * Ò»´ÎÏû³ıcount¸öĞÇĞÇµÃ·Ö
+	 * ä¸€æ¬¡æ¶ˆé™¤countä¸ªæ˜Ÿæ˜Ÿå¾—åˆ†
 	 * @param count
 	 * @return
 	 */
@@ -12,9 +12,9 @@ public class ScoreUtil {
 		return 5 * count * count;
 	}
 	/**
-	 * »ñÈ¡½±Àø·Ö
+	 * è·å–å¥–åŠ±åˆ†
 	 * 
-	 * Ê£Óà10¸ö¼°ÒÔÉÏ£¬½±Àø·ÖÎª0
+	 * å‰©ä½™10ä¸ªåŠä»¥ä¸Šï¼Œå¥–åŠ±åˆ†ä¸º0
 	 * 
 	 * @param remainCount
 	 * @return
