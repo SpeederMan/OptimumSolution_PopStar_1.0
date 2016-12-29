@@ -11,7 +11,7 @@ import com.df.popstar.model.Color;
 public class RandomGameSpaceBuilder implements AbstractGameSpaceBuilder {
 	@Override
 	public GameSpaceContext build() {
-		return buildRandomGameSpace(6, 6);
+		return buildRandomGameSpace(5, 6);
 	}
 	
 	/**

@@ -1,7 +1,6 @@
 package com.df.popstar.model;
 /**
  * Œª÷√–≈œ¢
- *
  */
 public class Position {
 	
@@ -43,7 +42,7 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return x + "," + y;
+		return "[" + x + " " + y + "]";
 	}
 	
 }

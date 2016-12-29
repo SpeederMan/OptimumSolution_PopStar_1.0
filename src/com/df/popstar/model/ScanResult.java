@@ -82,7 +82,10 @@ public class ScanResult {
 		}
 	}
 	/**
-	 * 预测当前空间能获得的最高分数
+	 * 最乐观估计当前空间能获得的最高分数
+	 * 
+	 * 认为所有同色星星都能消除
+	 * 
 	 * @return
 	 */
 	public int getMaxScores() {
@@ -116,6 +119,7 @@ public class ScanResult {
 		} else if(redSize == 1) {//剩余一个不能消除
 			remainSize++;
 		}
+		//消除得分+奖励分
 		return scores + ScoreUtil.getRewardScore(remainSize);
 	}
 }

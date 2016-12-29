@@ -188,6 +188,38 @@ public class GameSpaceContext implements Cloneable {
 		return report;
 	}
 	/**
+	 * 预测结果比已知最优解差
+	 * @param report
+	 * @param highLevelContext
+	 * @return
+	 */
+	private boolean isBadThanOptimumSolution(OptimumSolutionReport report, TempHighLevelContext highLevelContext, ScanResult scanResult) {
+		//上层环境既得得分
+		int currentScores = highLevelContext.getScore();
+		//预测能得到的最高分
+		int maxScore = currentScores + scanResult.getMaxScores();
+		//比已知最优解中的得分低  不在后续计算
+		return report.getScore() >= maxScore;
+	}
+	/**
+	 * 一轮完整的消除结束，如果优于已知最优解，则更新最优报告
+	 * @param report
+	 * @param highLevelContext
+	 * @param scanResult
+	 */
+	private void updateOptimumSolutionReportIfNecessary(OptimumSolutionReport report, TempHighLevelContext highLevelContext, ScanResult scanResult) {
+		//计算奖励分
+		int rewardScore = ScoreUtil.getRewardScore(scanResult.getTotalStarCount());
+		//此路径的最终得分
+		int scores = highLevelContext.getScore() + rewardScore;
+		if(scores > report.getScore()) {//比已知记录的得分高，更新最高记录
+			report.setScore(scores);
+			report.setRemainStars(scanResult.getTotalStarCount());
+			report.setSteps(highLevelContext.getSteps());
+		}
+	}
+	
+	/**
 	 * 递归分析
 	 * @param space 当前空间
 	 * @param report 分析报告
@@ -199,52 +231,29 @@ public class GameSpaceContext implements Cloneable {
 		//空间扫描结果
 		ScanResult scanResult = scanSpace();
 		
-		//上层环境得分
-		int currentScores = highLevelContext.getScore();
-		
-		//未分析过空间，预测能得到的最高分
-		int maxScore = currentScores + scanResult.getMaxScores();
-		//比记录中的最高分低  不在后续计算
-		if(maxScore < report.getTotalScore()) {
+		//当前空间已没有可以消除的星星
+		if(scanResult.isEmpty()) {
+			updateOptimumSolutionReportIfNecessary(report, highLevelContext, scanResult);
+			return;
+		}
+		//预测最优消除得分低于已知最优解则不在后续消除
+		if(isBadThanOptimumSolution(report, highLevelContext, scanResult)) {
 			return;
 		}
 		
-		if(scanResult.isEmpty()) {//当前空间已不能消除
-			//计算奖励分
-			int rewardScore = ScoreUtil.getRewardScore(scanResult.getTotalStarCount());
-			//此路径的最终最高得分
-			currentScores = currentScores + rewardScore;
-			if(currentScores > report.getTotalScore()) {//比已知记录的得分高，更新最高记录
-				report.setTotalScore(currentScores);
-				report.setRemainStars(scanResult.getTotalStarCount());
-				report.setSteps(collectPath(highLevelContext.getSteps()));
-			}
-			return;
-		}
-		
-		for(PopStarContext temp : scanResult.getPopStarContext()) {
-			int popScore = temp.getPopScore();
-			highLevelContext.addStep(temp);
-			highLevelContext.setScore(currentScores + popScore);
+		scanResult.getPopStarContext().stream()
+		.forEach(popStarContext -> {
+			
+			highLevelContext.pushStep(popStarContext);
 			
 			GameSpaceContext gameSpaceClone = this.clone();
-			gameSpaceClone.popStar(temp);
+			gameSpaceClone.popStar(popStarContext);
 			gameSpaceClone.analyse(report, highLevelContext);
 			
-			highLevelContext.removeLastStep();
-			highLevelContext.setScore(highLevelContext.getScore() - popScore);
-		}
+			highLevelContext.popStep();
+		});
 	}
 	
-	private String collectPath(List<PopStarContext> steps) {
-		StringBuilder path = new StringBuilder();
-		for(PopStarContext step : steps) {
-			Position model = step.getPopStar().getPosition();
-			path.append((model.getX() + 1) + "" + (model.getY() + 1) + "@");
-		}
-		return path.toString();
-	}
-
 	@Override
 	public GameSpaceContext clone() {
 		try {
@@ -259,6 +268,7 @@ public class GameSpaceContext implements Cloneable {
 	public String toString() {
 		
 		StringBuffer result = new StringBuffer("=================================================\n");
+
 		for(int y=space.length-1; y>=0; y--) {
 			for(int x=0; x<10; x++) {
 				result.append(space[x][y]).append(" ");
@@ -292,8 +302,9 @@ public class GameSpaceContext implements Cloneable {
 		 */
 		private List<PopStarContext> steps = new ArrayList<PopStarContext>();
 		
-		public void setScore(int score) {
-			this.score = score;
+		public void pushStep(PopStarContext step) {
+			steps.add(step);
+			this.score += step.getPopScore();
 		}
 		
 		public int getScore() {
@@ -308,21 +319,14 @@ public class GameSpaceContext implements Cloneable {
 			return this.remainStar;
 		}
 		
-		public void addStep(PopStarContext step) {
-			steps.add(step);
-		}
-		
-		public void addStepBegin(PopStarContext step) {
-			steps.add(0,step);
-		}
-		
 		public List<PopStarContext> getSteps() {
 			return steps;
 		}
 		
-		public void removeLastStep() {
+		public void popStep() {
 			if(!steps.isEmpty()) {
-				steps.remove(steps.size()-1);
+				PopStarContext step = steps.remove(steps.size()-1);
+				this.score -= step.getPopScore();
 			}
 		}
 	}
