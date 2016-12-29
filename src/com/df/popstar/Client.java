@@ -2,7 +2,6 @@ package com.df.popstar;
 
 import com.df.popstar.context.GameSpaceContext;
 import com.df.popstar.model.OptimumSolutionReport;
-import com.df.popstar.util.FormatUtil;
 /**
  * 
  *  Y ^
@@ -23,28 +22,13 @@ import com.df.popstar.util.FormatUtil;
 public class Client {
 	
 	public static void main(String[] args) {
-		
+		//随机生成游戏空间
 		GameSpaceContext gameSpace = GameSpaceContext.build();
-		
+		//打印空间
 		gameSpace.printGameSpace();;
-		
-		long begin = System.currentTimeMillis();
-		//开始分析
+		//分析最优解
 		OptimumSolutionReport report = gameSpace.startAnalyse();
-		FormatUtil.printReport(report);
-		
-		System.out.println(getTotalTime(begin));
-	}
-	
-	private static String getTotalTime(long begin) {
-		long total = System.currentTimeMillis() - begin;
-		long ms = total % 1000;
-		total = total / 1000;
-		long s = total % 60;
-		total = total / 60;
-		long mm = total % 60;
-		total = total / 60;
-		long h = total % 60;
-		return h + " Hour " + mm + " Min " + s + " Second " + ms + " ms";
+		//打印分析报告
+		report.printReport();
 	}
 }

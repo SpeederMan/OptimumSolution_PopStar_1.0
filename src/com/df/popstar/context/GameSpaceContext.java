@@ -66,7 +66,7 @@ public class GameSpaceContext implements Cloneable {
 	public void popStar(PopStarContext star) {
 
 		star.getPopPositions().stream()
-		.peek(position -> {
+		.forEach(position -> {
 				space[position.getX()][position.getY()] = null;
 			});
 		resetSpace();
@@ -180,7 +180,11 @@ public class GameSpaceContext implements Cloneable {
 	public OptimumSolutionReport startAnalyse() {
 		
 		OptimumSolutionReport report = new OptimumSolutionReport();
+		
+		long begin = System.currentTimeMillis();
 		analyse(report, new TempHighLevelContext());
+		report.setTotalTime(System.currentTimeMillis() - begin);
+		
 		return report;
 	}
 	/**
